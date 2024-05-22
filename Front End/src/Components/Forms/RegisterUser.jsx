@@ -15,12 +15,12 @@ function RegisterUser ( ) {
         })
         .then(
             (response)=>{
-                console.log(response.data)
+                setEmailResponseDataApi(response.data.email);
                 console.log(response.status);
             }
         )
         .catch((error)=>{
-            console.log('ops houve um erro');
+            console.log(`ops houve um erro ${error}`);
         })
     }
 
