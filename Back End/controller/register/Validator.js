@@ -18,7 +18,6 @@ const validatePasswordsEquality = (password, confirmPassword) => {
 }
 
 
-
 module.exports = {
     validateIfInputIsEmpty,
     validatePasswordsEquality
