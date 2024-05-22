@@ -1,10 +1,14 @@
 function RegisterUser ( ) {
+    const handleRegisterSubmit = ( ) => {
+        e.preventDefault( );
+    }
+
     return (
         <div className="bg-blue-950 h-screen w-screen ">
             <section className="pt-10 flex flex-col gap-10">
                 <h1 className="text-center text-white text-3xl font-semibold ">Registre-se</h1>
 
-                <form className="justify-center flex">
+                <form className="justify-center flex" onSubmit={(e)=>handleRegisterSubmit(e)}>
                     <section className=" flex w-1/2 md:w-1/4 flex-col gap-2">
                         <input type="text" placeholder="Seu nome: "
                         className="py-2 text-center font-semibold"/>
