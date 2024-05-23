@@ -1,3 +1,5 @@
+const Users = require('../../db/db');
+
 const validateIfInputIsEmpty = (nameUser, email, password, confirmPassword) => {
     let auth = false;
 
@@ -17,8 +19,20 @@ const validatePasswordsEquality = (password, confirmPassword) => {
     return auth = true;
 }
 
+const validateIfUserExists = async (email) => {
+    let userExists = false;
+    const getUserInDB = await Users.find({email: email});
+    
+    if (getUserInDB.length > 0) {
+        userExists = true;
+    }
+
+    return userExists;
+}
+
 
 module.exports = {
     validateIfInputIsEmpty,
-    validatePasswordsEquality
+    validatePasswordsEquality,
+    validateIfUserExists
 }

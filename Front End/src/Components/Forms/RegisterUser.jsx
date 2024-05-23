@@ -15,7 +15,6 @@ function RegisterUser ( ) {
         })
         .then(
             (response)=>{
-                setEmailResponseDataApi(response.data.email);
                 console.log(response.status);
             }
         )
