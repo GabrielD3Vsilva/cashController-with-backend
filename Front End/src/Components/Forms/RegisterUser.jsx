@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterUser ( ) {
-    const navigate = useNavigate( );
     const [nameUser, setNameUser] = useState( );
     const [email, setEmail] = useState( );
     const [password, setPassword] = useState( );
     const [confirmPassword, setConfirmPassword] = useState( );
+    const navigate = useNavigate( );
     
     const handleRegisterSubmit = async (e) => {
         e.preventDefault( );
@@ -24,10 +25,6 @@ function RegisterUser ( ) {
         .catch((error)=>{
             console.log(`ops houve um erro ${error}`);
         })
-    }
-
-    const redirectToLogin = ( ) => {
-        navigate('/login');
     }
 
     return (
@@ -56,7 +53,9 @@ function RegisterUser ( ) {
                         <input type="submit" value="Cadastrar" 
                         className="bg-blue-600 py-3 hover:bg-blue-900 transition-all ease-in-out font-bold hover:text-white"/>
 
-                        <button onClick={redirectToLogin( )} className="bg-blue-600 py-3 hover:bg-blue-900 transition-all ease-in-out font-bold hover:text-white">Ir para login</button>
+                        <Link to="/login" className='bg-blue-600 py-3 hover:bg-blue-900 transition-all ease-in-out font-bold hover:text-white text-center'>
+                            Ir para Login
+                        </Link>
                     </section>
                 </form>
             </section>
