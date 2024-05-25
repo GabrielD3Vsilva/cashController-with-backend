@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login ( ) {
     const [email, setEmail] = useState( );
     const [password, setPassword] = useState( );
+    const navigate = useNavigate( );
 
     const handleLogin = async (e) => {
         e.preventDefault( );
@@ -15,7 +17,10 @@ function Login ( ) {
                 "Content-Type": "application/json"
             }
         }).then(
-            (response)=>console.log(response.data)
+            (response)=>{
+                console.log(response.data);
+                navigate('/home');
+            }
         ).catch((error)=>console.log('houve um erro:', error))
     }
 

@@ -6,4 +6,5 @@ const LoginController = require('../controller/Login/LoginController');
 routes.post('/register', RegisterController.GetInputValuesFromForm);
 routes.post('/login', LoginController.getDataFromUser);
 
+
 module.exports = routes;
