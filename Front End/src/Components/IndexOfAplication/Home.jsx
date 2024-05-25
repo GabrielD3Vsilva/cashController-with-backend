@@ -2,8 +2,12 @@ import axios from 'axios';
 import CashItem from './CashItems/CashItem';
 import FormGetCashInit from './FormCash/FormGetCashInit'
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function Home () {
+function Home ( ) {
+    const location = useLocation( );
+    const data = location.state;
+
     const [isOpenForm, setIsOpenForm] = useState(false);
 
     const openOrCloseForm = ( ) => {
@@ -27,10 +31,10 @@ function Home () {
 
             <main className='flex justify-center'>
                 <div className="flex flex-col gap-y-8">
-                    <button className=" text-center px-2 bg-blue-600 py-1 mt-8 hover:bg-blue-900 transition-all ease-in-out font-bold hover:text-white" onClick={openOrCloseForm}>Adicionar uma verba inicial</button>
+                    <button className=" text-center px-2 bg-blue-600 py-1 mt-8 hover:bg-blue-900 transition-all ease-in-out font-bold text-white" onClick={openOrCloseForm}>Adicionar uma verba inicial</button>
                     
                     <div>
-                    {isOpenForm? <FormGetCashInit/> : <></>}</div>
+                    {isOpenForm? <FormGetCashInit email={data} setIsOpenForm={setIsOpenForm}/> : <></>}</div>
                     
                     
                 </div>

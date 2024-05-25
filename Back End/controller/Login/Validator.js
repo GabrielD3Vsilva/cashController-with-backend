@@ -1,4 +1,4 @@
-const Users = require('../../db/db');
+const {Users} = require('../../db/db');
 
 const validateIfInputIsEmpty = (email, password) => {
     let  empty = false;

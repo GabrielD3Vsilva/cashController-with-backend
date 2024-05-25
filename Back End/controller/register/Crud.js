@@ -1,4 +1,4 @@
-const Users = require('../../db/db');
+const {Users} = require('../../db/db');
 
 const createUser = async (nameUser, email, password) => {
 
