@@ -1,6 +1,7 @@
 import axios from 'axios';
 import CashItem from './CashItems/CashItem';
 import FormGetCashInit from './FormCash/FormGetCashInit'
+import FormGetExpense from './FormCash/FormGetExpense';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -49,6 +50,14 @@ function Home ( ) {
                         </div>
                 </main>
             }
+
+            <section className='py-8'>
+                <FormGetExpense email={data}/>
+                
+                <h3 className="text-xl font-semibold text-center mt-6">Veja sua lista de despezas:</h3>
+
+                <h4 className="text-lg mt-6 font-semibold text-center text-blue-950">Ainda não possui despezas adicionadas</h4>
+            </section>
         </div>
     )
 }
