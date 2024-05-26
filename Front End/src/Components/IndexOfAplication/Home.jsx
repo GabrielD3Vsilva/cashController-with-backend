@@ -12,14 +12,15 @@ function Home ( ) {
     const [exists, setExists] = useState( );
     
     useEffect(( )=>{
-        axios.post('http://localhost:8080/returnIfCashExists', JSON.stringify({data}), {
+        axios.post('http://localhost:8080/returnIfCashExists', JSON.stringify({email: data}), {
             headers: {"Content-Type": "application/json"}
         }).then((response)=>{
+            //console.log(data)
             console.log(response.status);
             console.log(response.data);
             setExists(response.data);
         }).catch((error)=>console.log(error));
-    }, [])
+    }, []);
 
     const openOrCloseForm = ( ) => {
         setIsOpenForm(!isOpenForm);
@@ -38,17 +39,16 @@ function Home ( ) {
                     <CashItem title={'Verba disponível'} value={100000}/>
             </section>
 
+            {exists?<></>:<main className='flex justify-center'>
+                        <div className="flex flex-col gap-y-8">
+                            <button className=" text-center px-2 bg-blue-600 py-1 mt-8 hover:bg-blue-900 transition-all ease-in-out font-bold text-white" onClick={openOrCloseForm}>Adicionar uma verba inicial</button>
             
-            <main className='flex justify-center'>
-                    <div className="flex flex-col gap-y-8">
-                        <button className=" text-center px-2 bg-blue-600 py-1 mt-8 hover:bg-blue-900 transition-all ease-in-out font-bold text-white" onClick={openOrCloseForm}>Adicionar uma verba inicial</button>
-                            
-                    <div>
-                        {isOpenForm? <FormGetCashInit email={data} setIsOpenForm={setIsOpenForm}/> : <></>}</div>
-                    </div>
-            </main>
-
-
+                        <div>
+                            {isOpenForm? <FormGetCashInit email={data} setIsOpenForm={setIsOpenForm}/> : <></>}
+                        </div>
+                        </div>
+                </main>
+            }
         </div>
     )
 }

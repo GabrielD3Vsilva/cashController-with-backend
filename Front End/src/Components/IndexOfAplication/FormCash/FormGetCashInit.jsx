@@ -18,9 +18,7 @@ function FormCashInit ({setIsOpenForm, email}) {
                 console.log(response.data)
                 setIsOpenForm(false);
             }
-
-        ).catch((error)=>{console.log('houve o erro: ', error)})
-
+        ).catch((error)=>{console.log('houve o erro: ', error)});
     }
     
 
