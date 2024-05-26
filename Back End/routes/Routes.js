@@ -8,5 +8,6 @@ routes.post('/register', RegisterController.GetInputValuesFromForm);
 routes.post('/login', LoginController.getDataFromUser);
 routes.post('/registerCash', CashController.getCashInit);
 routes.post('/returnIfCashExists', CashController.returnIfCashExists);
+routes.post('/getExpenseFromForm', CashController.getExpenseFromForm);
 
 module.exports = routes;

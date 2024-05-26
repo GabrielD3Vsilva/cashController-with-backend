@@ -1,5 +1,6 @@
 const { createCashInit } = require("./createCashInit");
-const {CashInit} = require('../../db/db')
+const {CashInit} = require('../../db/db');
+const {createExpense} = require('./createExpense');
 
 const getCashInit = async (req, res) => {
     const {email, cashInit} = req.body;
@@ -30,11 +31,21 @@ const returnIfCashExists = async (req, res)  => {
     } catch {
         res.status(500).send('Erro ao buscar cashInit')
     }
-    
+}
+
+const getExpenseFromForm = async (req, res) => {
+    const {email, expenseTitle, expenseValue} = req.body;
+    if(expenseTitle == '' || expenseValue =='') {
+        return;
+    }
+
+    const expenseInDB = await createExpense(email, expenseTitle, expenseValue);
+    return res.status(200).send(expenseInDB);
 }
 
 
 module.exports = {
     getCashInit,
-    returnIfCashExists
+    returnIfCashExists,
+    getExpenseFromForm
 }
