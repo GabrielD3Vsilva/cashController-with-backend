@@ -9,7 +9,7 @@ function Home ( ) {
     const location = useLocation( );
     const data = location.state;
     const [isOpenForm, setIsOpenForm] = useState(false);
-    const [exists, setExists] = useState( );
+    const [exists, setExists] = useState({});
     
     useEffect(( )=>{
         axios.post('http://localhost:8080/returnIfCashExists', JSON.stringify({email: data}), {
@@ -34,7 +34,7 @@ function Home ( ) {
             </header>
 
             <section className='flex justify-center mt-5 gap-4 flex-wrap '>
-                    <CashItem title={'Verba Inicial'} value={100000}/>
+                    <CashItem title={'Verba Inicial'} value={exists?exists.cashInit:0}/>
                     <CashItem title={'Verba Gasta'} value={100000}/>
                     <CashItem title={'Verba disponível'} value={100000}/>
             </section>

@@ -19,7 +19,11 @@ const returnIfCashExists = async (req, res)  => {
         console.log(cashInitInDB);
 
         if(cashInitInDB.length > 0) {
-            return res.status(200).send(true);
+            return res.status(200).send(
+                {
+                    boolean: true, 
+                    cashInit: cashInitInDB[0].cashInit
+                });
         } else {
             return res.status(200).send(false);
         }

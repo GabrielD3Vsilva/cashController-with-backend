@@ -5,7 +5,7 @@ const GetInputValuesFromForm = async (req, res) => {
     const {nameUser, email, password, confirmPassword} = req.body;
     const authInputs =  validator.validateIfInputIsEmpty(nameUser, email, password, confirmPassword);
 
-        if(authInputs == true) {
+        if(authInputs) {
             const authPasswords = validator.validatePasswordsEquality(password, confirmPassword);
      
             if(authPasswords == false) {

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import React from "react";
 
 function FormCashInit ({setIsOpenForm, email}) {
 
@@ -17,6 +18,8 @@ function FormCashInit ({setIsOpenForm, email}) {
             (response)=>{
                 console.log(response.data)
                 setIsOpenForm(false);
+                window.location.reload( );
+                
             }
         ).catch((error)=>{console.log('houve o erro: ', error)});
     }
