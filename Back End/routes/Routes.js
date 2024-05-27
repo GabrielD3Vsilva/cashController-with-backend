@@ -9,5 +9,6 @@ routes.post('/login', LoginController.getDataFromUser);
 routes.post('/registerCash', CashController.getCashInit);
 routes.post('/returnIfCashExists', CashController.returnIfCashExists);
 routes.post('/getExpenseFromForm', CashController.getExpenseFromForm);
+routes.post('/returnIfExpensesExists', CashController.returnIfExpensesExists);
 
 module.exports = routes;

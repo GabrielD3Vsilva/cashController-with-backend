@@ -25,7 +25,7 @@ const ExpenseSchema = mongoose.Schema
     {
         email: String,
         expenseTitle: String,
-        ExpenseValue: Number
+        expenseValue: Number
     }
 )
 

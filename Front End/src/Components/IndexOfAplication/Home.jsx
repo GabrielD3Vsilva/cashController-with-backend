@@ -11,16 +11,25 @@ function Home ( ) {
     const data = location.state;
     const [isOpenForm, setIsOpenForm] = useState(false);
     const [exists, setExists] = useState({});
+    const [dataTest, setDataTest] = useState( );
     
     useEffect(( )=>{
         axios.post('http://localhost:8080/returnIfCashExists', JSON.stringify({email: data}), {
             headers: {"Content-Type": "application/json"}
         }).then((response)=>{
-            //console.log(data)
             console.log(response.status);
             console.log(response.data);
             setExists(response.data);
         }).catch((error)=>console.log(error));
+
+        axios.post('http://localhost:8080/returnIfExpensesExists', JSON.stringify({email: data}), {
+            headers: {"Content-Type": "application/json"}
+        })
+        .then((response)=>{
+            setDataTest(response.data);
+            console.log(dataTest);
+        })
+        .catch((error)=>console.log(error))
     }, []);
 
     const openOrCloseForm = ( ) => {

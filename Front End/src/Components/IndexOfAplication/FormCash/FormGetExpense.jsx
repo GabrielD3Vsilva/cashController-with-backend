@@ -1,20 +1,19 @@
 import { useState } from "react";
 import axios from "axios";
+import React from "react";
 
 function FormGetExpense ({email}) {
     const [expenseTitle, setExpenseTitle] = useState( );
     const [expenseValue, setExpenseValue] = useState( );
-    const [dataTest, setDataTest] = useState([]);
 
     const handleExpense = async (e) => {
-        e.preventDefault( );
-        
+        e.preventDefault( );  
         await axios.post('http://localhost:8080/getExpenseFromForm', JSON.stringify({email, expenseTitle, expenseValue}), {
             headers: {"Content-Type": "application/json"}
         }).then((response)=>{
-            setDataTest(response.data);
-            console.log(dataTest);
-        }).catch((error)=>console.log(error))
+            console.log(response);
+            window.location.reload( );
+        }).catch((error)=>console.log(error));
     }
 
     return (
