@@ -42,7 +42,7 @@ function Home ( ) {
             const expensesList = [];
 
             for (let i = 0; i < dataTest.length; i++) {
-                expensesList.push(<ExpenseItem key={i} expenseTitle={dataTest[i].title} expenseValue={dataTest[i].value}/>);
+                expensesList.push(<ExpenseItem key={dataTest[i].id} expenseId={dataTest[i].id} expenseTitle={dataTest[i].title} expenseValue={dataTest[i].value} />);
             }
 
             return expensesList;
@@ -76,14 +76,14 @@ function Home ( ) {
                 </main>
             }
 
-            <section className='py-8'>
+            <section className='pt-4'>
                 <FormGetExpense email={data}/>
                 
                 <h3 className="text-xl font-semibold text-center mt-6">Veja sua lista de despezas:</h3>
 
                 <div className='flex justify-center my-8'>
-                    <div className='flex flex-col gap-3'>
-                        {renderExpenses( )}
+                    <div className='flex flex-col gap-3 bg-gray-200'>
+                        {dataTest?renderExpenses( ):<h3 className="text-center text-lg font-bold">Ainda não tem despesas adicionadas</h3>}
                     </div>
                 </div>
             </section>

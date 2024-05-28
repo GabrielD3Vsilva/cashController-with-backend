@@ -52,7 +52,7 @@ const returnIfExpensesExists = async (req, res) => {
     
     if(expensesInDB.length > 0) {
             for(let i = 0; i < expensesInDB.length; i++) {
-                arrayExpenses.push({value: expensesInDB[i].expenseValue, title: expensesInDB[i].expenseTitle});
+                arrayExpenses.push({value: expensesInDB[i].expenseValue, title: expensesInDB[i].expenseTitle, id: expensesInDB[i]._id});
 
                 console.log(arrayExpenses[i]);
             }
@@ -63,10 +63,24 @@ const returnIfExpensesExists = async (req, res) => {
     return res.send('Não há despezas...');
 }
 
+const deleteExpense = async (req, res) => {
+    const {id} = req.body;
+    try {
+        await Expenses.deleteOne({_id: id});
+    } catch (error) {
+        console.error(error);
+    }
+
+    return res.send('Delete expense');
+    
+}
+
 
 module.exports = {
     getCashInit,
     returnIfCashExists,
     getExpenseFromForm,
-    returnIfExpensesExists
+    returnIfExpensesExists,
+    deleteExpense
+    
 }

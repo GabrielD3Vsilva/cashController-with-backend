@@ -10,5 +10,6 @@ routes.post('/registerCash', CashController.getCashInit);
 routes.post('/returnIfCashExists', CashController.returnIfCashExists);
 routes.post('/getExpenseFromForm', CashController.getExpenseFromForm);
 routes.post('/returnIfExpensesExists', CashController.returnIfExpensesExists);
+routes.post('/deleteExpense', CashController.deleteExpense);
 
 module.exports = routes;
