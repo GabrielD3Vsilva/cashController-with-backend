@@ -36,8 +36,8 @@ const returnIfCashExists = async (req, res)  => {
 
 const getExpenseFromForm = async (req, res) => {
     const {email, expenseTitle, expenseValue} = req.body;
-    if(expenseTitle == '' || expenseValue =='') {
-        return;
+    if(expenseTitle == '' || expenseValue =='' ) {
+        return res.send('campo vazio: ');
     }
 
     await createExpense(email, expenseTitle, expenseValue);
@@ -50,22 +50,17 @@ const returnIfExpensesExists = async (req, res) => {
     
    const expensesInDB = await Expenses.find({email: email});
     
-    
     if(expensesInDB.length > 0) {
             for(let i = 0; i < expensesInDB.length; i++) {
                 arrayExpenses.push({value: expensesInDB[i].expenseValue, title: expensesInDB[i].expenseTitle});
 
                 console.log(arrayExpenses[i]);
             }
-            return res.json({arrayExpenses:arrayExpenses});
+            return res.status(200).json({arrayExpenses: arrayExpenses});
     }
 
     console.log('dont exists')
     return res.send('Não há despezas...');
-   
-
-   
-
 }
 
 

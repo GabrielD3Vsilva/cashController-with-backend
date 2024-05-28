@@ -5,6 +5,7 @@ import FormGetExpense from './FormCash/FormGetExpense';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import ExpenseItem from './ExpenseItem';
 
 function Home ( ) {
     const location = useLocation( );
@@ -26,15 +27,30 @@ function Home ( ) {
             headers: {"Content-Type": "application/json"}
         })
         .then((response)=>{
-            setDataTest(response.data);
-            console.log(dataTest);
+            setDataTest(response.data.arrayExpenses);
+            console.log(response.data.arrayExpenses);
         })
-        .catch((error)=>console.log(error))
+        .catch((error)=>console.log(error));
     }, []);
 
     const openOrCloseForm = ( ) => {
         setIsOpenForm(!isOpenForm);
     }
+
+    const renderExpenses = () => {
+        if(dataTest) {
+            const expensesList = [];
+
+            for (let i = 0; i < dataTest.length; i++) {
+                expensesList.push(<ExpenseItem key={i} expenseTitle={dataTest[i].title} expenseValue={dataTest[i].value}/>);
+            }
+
+            return expensesList;
+        }
+
+        return <></>
+    };
+    
 
     return (
         <div className="h-screen w-screen bg-gray-200">
@@ -65,7 +81,11 @@ function Home ( ) {
                 
                 <h3 className="text-xl font-semibold text-center mt-6">Veja sua lista de despezas:</h3>
 
-                <h4 className="text-lg mt-6 font-semibold text-center text-blue-950">Ainda não possui despezas adicionadas</h4>
+                <div className='flex justify-center my-8'>
+                    <div className='flex flex-col gap-3'>
+                        {renderExpenses( )}
+                    </div>
+                </div>
             </section>
         </div>
     )

@@ -11,7 +11,7 @@ function FormGetExpense ({email}) {
         await axios.post('http://localhost:8080/getExpenseFromForm', JSON.stringify({email, expenseTitle, expenseValue}), {
             headers: {"Content-Type": "application/json"}
         }).then((response)=>{
-            console.log(response);
+            console.log(response.data);
             window.location.reload( );
         }).catch((error)=>console.log(error));
     }
