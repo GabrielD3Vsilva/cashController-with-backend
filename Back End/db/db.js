@@ -8,17 +8,21 @@ mongoose.connect("mongodb+srv://gabrielthedev:1981abcd.@cluster0.sspg6kv.mongodb
 .catch((error)=>(`mongoDB Error ${error}`));
 
 const UserSchema = mongoose.Schema
-({
-    nameUser: String,
-    email: String,
-    password: String
-})
+(
+    {
+        nameUser: String,
+        email: String,
+        password: String
+    }
+)
 
 const CashInitSchema = mongoose.Schema
-({
-    email: String,
-    cashInit: Number
-})
+(
+    {
+        email: String,
+        cashInit: Number
+    }
+)
 
 const ExpenseSchema = mongoose.Schema
 (
@@ -29,8 +33,17 @@ const ExpenseSchema = mongoose.Schema
     }
 )
 
+const CashSchema = mongoose.Schema
+(
+    {
+        email: String,
+        cashvalue: Number
+    }
+)
+
 module.exports = {
     Users: mongoose.model('Users', UserSchema),
     CashInit: mongoose.model('CashInit', CashInitSchema),
-    Expenses: mongoose.model('Expenses', ExpenseSchema)
+    Expenses: mongoose.model('Expenses', ExpenseSchema),
+    Cash: mongoose.model('Cash', CashSchema)
 } 

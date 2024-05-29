@@ -62,7 +62,7 @@ function Home ( ) {
             <section className='flex justify-center mt-5 gap-4 flex-wrap '>
                     <CashItem title={'Verba Inicial'} value={exists?exists.cashInit:0}/>
                     <CashItem title={'Verba Gasta'} value={100000}/>
-                    <CashItem title={'Verba disponível'} value={100000}/>
+                    <CashItem title={'Verba disponível'} value={exists?exists.freeCash:0}/>
             </section>
 
             {exists?<></>:<main className='flex justify-center'>

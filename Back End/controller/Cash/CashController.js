@@ -2,6 +2,7 @@ const { createCashInit } = require("./createCashInit");
 const {CashInit} = require('../../db/db');
 const {createExpense} = require('./createExpense');
 const {Expenses} = require('../../db/db');
+const {Cash} = require('../../db/db');
 
 const getCashInit = async (req, res) => {
     const {email, cashInit} = req.body;
@@ -18,13 +19,15 @@ const returnIfCashExists = async (req, res)  => {
     const {email} = req.body;
     try {
         const cashInitInDB = await CashInit.find({email: email});
+        const freeCashInDB = await Cash.find({email: email});
         console.log(cashInitInDB);
 
         if(cashInitInDB.length > 0) {
             return res.status(200).send(
                 {
                     boolean: true, 
-                    cashInit: cashInitInDB[0].cashInit
+                    cashInit: cashInitInDB[0].cashInit,
+                    freeCash: freeCashInDB[0].cashvalue
                 });
         } else {
             return res.status(200).send(false);

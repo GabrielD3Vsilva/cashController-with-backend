@@ -13,6 +13,7 @@ function FormGetExpense ({email}) {
         }).then((response)=>{
             console.log(response.data);
             window.location.reload( );
+            
         }).catch((error)=>console.log(error));
     }
 
