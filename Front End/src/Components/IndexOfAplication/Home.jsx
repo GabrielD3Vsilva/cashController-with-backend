@@ -42,7 +42,7 @@ function Home ( ) {
             const expensesList = [];
 
             for (let i = 0; i < dataTest.length; i++) {
-                expensesList.push(<ExpenseItem key={dataTest[i].id} expenseId={dataTest[i].id} expenseTitle={dataTest[i].title} expenseValue={dataTest[i].value} />);
+                expensesList.push(<ExpenseItem key={dataTest[i].id} email={data} expenseId={dataTest[i].id} expenseTitle={dataTest[i].title} expenseValue={dataTest[i].value} />);
             }
 
             return expensesList;

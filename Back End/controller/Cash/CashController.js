@@ -44,6 +44,10 @@ const getExpenseFromForm = async (req, res) => {
     }
 
     await createExpense(email, expenseTitle, expenseValue);
+    const expensesInDB = await Expenses.find({email: email});
+    const cashInitInDB = await CashInit.find({email: email});
+    const theNewFreeCash =  {cashvalue: Number(Number(cashInitInDB[0].cashInit)) - expensesInDB[0].expenseValue}
+    await Cash.updateOne({email: email}, theNewFreeCash);
     return res.status(200).send('expense created');
 }
 
@@ -52,7 +56,7 @@ const returnIfExpensesExists = async (req, res) => {
     let arrayExpenses = [];
     
    const expensesInDB = await Expenses.find({email: email});
-    
+
     if(expensesInDB.length > 0) {
             for(let i = 0; i < expensesInDB.length; i++) {
                 arrayExpenses.push({value: expensesInDB[i].expenseValue, title: expensesInDB[i].expenseTitle, id: expensesInDB[i]._id});
@@ -67,9 +71,13 @@ const returnIfExpensesExists = async (req, res) => {
 }
 
 const deleteExpense = async (req, res) => {
-    const {id} = req.body;
+    const {id, email} = req.body;
     try {
+        const expenseToFind = await Expenses.find({_id: id});
+        const currentlyCash = await Cash.find({email: email});
+
         await Expenses.deleteOne({_id: id});
+        await Cash.updateOne({email: email}, {cashvalue: Number(expenseToFind[0].expenseValue) + Number(currentlyCash[0].cashvalue)});
     } catch (error) {
         console.error(error);
     }

@@ -1,9 +1,9 @@
 import axios from "axios";
 import React from "react";
 
-function ExpenseItem ({expenseTitle, expenseValue, expenseId}) {
+function ExpenseItem ({expenseTitle, expenseValue, expenseId, email}) {
     const handleIdToDelete = async ( ) => {
-        await axios.post('http://localhost:8080/deleteExpense', JSON.stringify({id: expenseId}), {
+        await axios.post('http://localhost:8080/deleteExpense', JSON.stringify({id: expenseId, email: email}), {
             headers: {"Content-Type": "application/json"}
         }).then((response)=>{
             console.log(response.data);
