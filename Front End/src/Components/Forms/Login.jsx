@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Login ( ) {
     const [email, setEmail] = useState( );
     const [password, setPassword] = useState( );
+    const [error, setError] = useState( );
     const navigate = useNavigate( );
 
     const handleLogin = async (e) => {
@@ -21,7 +22,10 @@ function Login ( ) {
                 console.log(response.data);
                 navigate('/home', {state: email});
             }
-        ).catch((error)=>console.log('houve um erro:', error))
+        ).catch((error)=>{
+            console.log('houve um erro:', error)
+            setError(true);
+        })
     }
 
 
@@ -29,7 +33,7 @@ function Login ( ) {
         <div className="bg-blue-950 h-screen w-screen ">
             <section className="pt-10 flex flex-col gap-10">
                 <h1 className="text-center text-white text-3xl font-semibold ">Login</h1>
-
+                {error?<h2 className="text-center text-xl text-white">Usuário não encontrado</h2>:<></>}
                 <form className="justify-center flex" onSubmit={(e)=>handleLogin(e)}>
                     <section className=" flex w-1/2 md:w-1/4 flex-col gap-2">
 

@@ -8,6 +8,7 @@ function RegisterUser ( ) {
     const [email, setEmail] = useState( );
     const [password, setPassword] = useState( );
     const [confirmPassword, setConfirmPassword] = useState( );
+    const [error, setError] = useState( );
     const navigate = useNavigate( );
     
     const handleRegisterSubmit = async (e) => {
@@ -24,6 +25,7 @@ function RegisterUser ( ) {
         )
         .catch((error)=>{
             console.log(`ops houve um erro ${error}`);
+            setError(true);
         })
     }
 
@@ -31,6 +33,8 @@ function RegisterUser ( ) {
         <div className="bg-blue-950 h-screen w-screen ">
             <section className="pt-10 flex flex-col gap-10">
                 <h1 className="text-center text-white text-3xl font-semibold ">Registre-se</h1>
+
+                {error?<h2 className='text-center text-xl text-white'>Erro ao registrar, tente novamente.</h2>:<></>}
 
                 <form className="justify-center flex" onSubmit={(e)=>handleRegisterSubmit(e)}>
                     <section className=" flex w-1/2 md:w-1/4 flex-col gap-2">
