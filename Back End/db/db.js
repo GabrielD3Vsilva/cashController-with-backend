@@ -41,9 +41,18 @@ const CashSchema = mongoose.Schema
     }
 )
 
+const ExpenseValueSchema = mongoose.Schema
+(
+    {
+        email: String,
+        value: Number
+    }
+)
+
 module.exports = {
     Users: mongoose.model('Users', UserSchema),
     CashInit: mongoose.model('CashInit', CashInitSchema),
     Expenses: mongoose.model('Expenses', ExpenseSchema),
-    Cash: mongoose.model('Cash', CashSchema)
+    Cash: mongoose.model('Cash', CashSchema),
+    ExpenseValue: mongoose.model('ExpenseValue', ExpenseValueSchema)
 } 
